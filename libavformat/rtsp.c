@@ -1451,7 +1451,7 @@ int ff_rtsp_make_setup_request(AVFormatContext *s, const char *host, int port,
 
         else if (lower_transport == RTSP_LOWER_TRANSPORT_UDP_MULTICAST) {
             snprintf(transport, sizeof(transport) - 1,
-                     "%s/UDP;multicast", trans_pref);
+                     "%s;multicast;client_port=%d-%d", trans_pref, rtsp_st->sdp_port, rtsp_st->sdp_port + 1);
         }
         if (s->oformat) {
             av_strlcat(transport, ";mode=record", sizeof(transport));
